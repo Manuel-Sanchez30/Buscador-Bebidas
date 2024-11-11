@@ -76,6 +76,13 @@ console.log(store.categorias);
                         class="px-2 rounded-md w-full"
                     >
                         <option value="">--Seleccione--</option>
+                        <option 
+                            v-for="categoria in store.categorias"
+                            :key="categoria.strCategory"
+                            :value="categoria.strCategory"
+
+                        
+                        >{{ categoria.strCategory }}</option>
                     </select>
                 </div>
                 <input 
