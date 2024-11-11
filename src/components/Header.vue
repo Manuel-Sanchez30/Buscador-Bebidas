@@ -9,7 +9,10 @@ const route = useRoute()
 const paginaInicio = computed(()=> route.name === 'inicio')
 
 const store = useBebidasStore()
-console.log(store.categorias);
+
+const handleSubmit = ()=>{
+    store.obtenerRecetas()
+}
 
 </script>
 <template>
@@ -48,6 +51,7 @@ console.log(store.categorias);
             <form 
                 v-if="paginaInicio"
                 class="md:w-1/2 xl:w-1/3 bg-orange-400 p-10 rounded-lg shadow-md space-y-6 mt-6"
+                @submit.prevent="handleSubmit"
             >
                 <div class="space-y-4">
                     <label 
@@ -60,7 +64,8 @@ console.log(store.categorias);
                         type="text"
                         id="ingrediente"
                         placeholder="Nombre o Ingredientes"
-                        class="rounded-md px-2 w-full"    
+                        class="rounded-md px-2 w-full"
+                        v-model="store.busqueda.nombre"    
                     >
                 </div>
                 <div class="space-y-4">
@@ -74,8 +79,14 @@ console.log(store.categorias);
                         name=""
                         id="categioria"
                         class="px-2 rounded-md w-full"
+                        v-model="store.busqueda.categoria"
                     >
                         <option value="">--Seleccione--</option>
+                        <option 
+                            v-for="categoria in store.categorias"
+                            :key="categoria.strCategory"
+                            :value="categoria.strCategory"                        
+                        >{{ categoria.strCategory }}</option>
                     </select>
                 </div>
                 <input 
