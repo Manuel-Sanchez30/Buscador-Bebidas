@@ -29,6 +29,7 @@ export const useBebidasStore = defineStore('bebidas', ()=>{
     async function seleccionarBebida(id){
         const {data:{drinks}} = await bebidaServices.buscarReceta(id)
         receta.value = drinks[0];
+        console.log(receta);
 
         modal.handleClickModal()
     }

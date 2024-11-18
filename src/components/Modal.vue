@@ -7,6 +7,33 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
     const modal = useModalStore();
     const bebidas = useBebidasStore()
 
+    const formatearIngredientes = ()=>{
+
+      const ingredientesDiv = document.createElement('DIV')
+
+        for( let i = 1; i <= 15; i++){
+          
+          if( bebidas.receta[`strIngredient${i}`] ){
+            const ingrediente = bebidas.receta[`strIngredient${i}`]
+            const cantidad = bebidas.receta[`strMeasure${i}`]
+
+            console.log({ingrediente});
+            console.log({cantidad});
+            
+            const ingredienteCantidad = document.createElement('P')
+            ingredienteCantidad.classList.add('text-lg', 'text-gray-500')
+            ingredienteCantidad.textContent = `${ingrediente} - ${cantidad}`
+
+            ingredientesDiv.appendChild(ingredienteCantidad)
+
+
+          }
+
+        }
+
+        return ingredientesDiv
+    }
+
 </script>
 
 <template>
@@ -22,7 +49,7 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
                 <div>
                   <div class="mt-3">
 
-                    <DialogTitle as="h3">
+                    <DialogTitle as="h3" class=" text-4xl font-bold my-5 text-center text-orange-700">
                       {{ bebidas.receta.strDrink }}
                     </DialogTitle>
                     <img 
@@ -31,16 +58,30 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
                       class="mx-auto w-96"
 
                     >
+                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-bold my-5">Ingredientes y Cantidades</DialogTitle>
+
+                    <div v-html="formatearIngredientes().outerHTML"></div>
+
+                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-bold my-5">Intrucciones</DialogTitle>
+                    <p class="text-gray-500">{{ bebidas.receta.strInstructions}}</p>
+
 
                   </div>
                 </div>
                 <div class="mt-5 sm:mt-6 flex justify-between gap-4">
                   <button
                     type="button"
-                    class="bg-orange-600 px-2 rounded-md text-white font-bold hover:bg-orange-500 w-1/2"
+                    class="bg-gray-500 px-2 rounded-md text-white font-bold hover:bg-gray-600 w-1/2"
                     @click="modal.handleClickModal()"
                   >
                     Cerrar
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-orange-600 px-2 rounded-md text-white font-bold hover:bg-orange-500 w-1/2"
+                    
+                  >
+                    Favoritos
                   </button>
                 </div> 
               </DialogPanel>
