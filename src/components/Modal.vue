@@ -1,11 +1,13 @@
 <script setup>
 import { useBebidasStore } from '@/stores/bebidas';
+import { useFavoritosStore } from '@/stores/favoritos';
 import { useModalStore } from '@/stores/modal';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 
     const modal = useModalStore();
-    const bebidas = useBebidasStore()
+    const bebidas = useBebidasStore();
+    const favorito = useFavoritosStore();
 
     const formatearIngredientes = ()=>{
 
@@ -17,9 +19,6 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
             const ingrediente = bebidas.receta[`strIngredient${i}`]
             const cantidad = bebidas.receta[`strMeasure${i}`]
 
-            console.log({ingrediente});
-            console.log({cantidad});
-            
             const ingredienteCantidad = document.createElement('P')
             ingredienteCantidad.classList.add('text-lg', 'text-gray-500')
             ingredienteCantidad.textContent = `${ingrediente} - ${cantidad}`
@@ -79,9 +78,9 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
                   <button
                     type="button"
                     class="bg-orange-600 px-2 rounded-md text-white font-bold hover:bg-orange-500 w-1/2"
-                    
+                    @click="favorito.handleClickFavoritos()"
                   >
-                    Favoritos
+                    {{ modal.textoBoton }}
                   </button>
                 </div> 
               </DialogPanel>

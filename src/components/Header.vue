@@ -31,17 +31,17 @@ const handleSubmit = ()=>{
                         >
                     </RouterLink>
                 </div>
-                <nav>
+                <nav class=" text-white">
                     <RouterLink 
                         :to="{name:'inicio'}"
-                        class="font-bold text-white"
+                        class="font-bold"
                         active-class="text-orange-500"
                     >
                         Inicio
                     </RouterLink>
                     <RouterLink 
                         :to="{name:'favoritos'}"
-                        class="font-bold text-white"
+                        class="font-bold"
                         active-class="text-orange-500"
                     >
                         Favoritos

@@ -23,13 +23,13 @@ export const useBebidasStore = defineStore('bebidas', ()=>{
     async function obtenerRecetas(){
         const {data:{drinks}} = await bebidaServices.buscarRecetas(busqueda)
         recetas.value = drinks;
-        console.log(recetas);
+    
     }
 
     async function seleccionarBebida(id){
         const {data:{drinks}} = await bebidaServices.buscarReceta(id)
         receta.value = drinks[0];
-        console.log(receta);
+    
 
         modal.handleClickModal()
     }

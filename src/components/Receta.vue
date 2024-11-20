@@ -22,8 +22,7 @@ import { useBebidasStore } from '@/stores/bebidas';
             <button 
                 type="button"
                 class="w-full bg-orange-600 rounded-md font-bold text-white hover:bg-orange-800"
-                @click="bebidas.seleccionarBebida(receta.idDrink)"
-                
+                @click="bebidas.seleccionarBebida(receta.idDrink)"                
             >
                 Ver Receta
             </button>
